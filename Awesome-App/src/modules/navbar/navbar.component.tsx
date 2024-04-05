@@ -6,7 +6,11 @@ import { BellOutlined, SearchOutlined, UserOutlined } from "@ant-design/icons";
 import { VueSaxIcon } from "../../shared-component/icons/Vuesax";
 import { SortIcon } from "../../shared-component/icons/SortIcon";
 
-export function NavBar(): JSX.Element {
+export interface NavBarProps {
+  onChangeFilter: (value: string) => void;
+}
+export function NavBar(props: NavBarProps): JSX.Element {
+  
   return (
     <div className="h-48 w-full p-8 flex flex-col gap-5 ">
       <div className="flex items-center justify-between">
@@ -33,26 +37,30 @@ export function NavBar(): JSX.Element {
           }}
         >
           <div className="flex-0 w-[40%]">
-            <Input placeholder="Search  Task" addonAfter={<SearchOutlined />} />
+            <Input
+              placeholder="Search  Task"
+              onChange={(e) => props.onChangeFilter(e.target.value)}
+              prefix={<SearchOutlined />}
+            />
           </div>
           <div className="flex items-center gap-5">
             <Select
               suffixIcon={<></>}
               placeholder={
                 <div className="flex items-center gap-2">
-                  <VueSaxIcon /> <span className="text-stone-800">Category</span>
+                  <VueSaxIcon />{" "}
+                  <span className="text-stone-800">Category</span>
                 </div>
               }
-           
             />
             <Select
               suffixIcon={<></>}
               placeholder={
                 <div className="flex items-center gap-2">
-                  <SortIcon /> <span className="text-stone-800">Sort By : Deadline</span>
+                  <SortIcon />{" "}
+                  <span className="text-stone-800">Sort By : Deadline</span>
                 </div>
               }
-              
             />
           </div>
         </ConfigProvider>

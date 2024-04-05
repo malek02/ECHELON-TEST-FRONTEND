@@ -1,20 +1,27 @@
 import React from "react";
+
 import { Avatar, Progress } from "antd";
 import { TimeIcon } from "../../../shared-component/icons/TimerIcon";
 import { TaskModel } from "../../../core/models/tasks/task-model";
+import { useNavigate } from "react-router";
+
 
 export interface TaskCardProps {
   data: TaskModel;
 }
 export function TaskCard(props: TaskCardProps): JSX.Element {
+  const navigate = useNavigate();
   return (
-    <div className="flex bg-white flex-col gap-2 rounded-[12px] p-6 h-full w-[328px] ">
+    <div
+      className="flex bg-white flex-col gap-2 cursor-pointer rounded-[12px] p-6 max-h-[315px] w-[328px] "
+      onClick={() => navigate(`/task/${props.data.id}`)}
+    >
       <img
         className="h-[110px] w-[280px] rounded-[10px]"
         src={props.data.image}
         alt=""
       />
-      <div className="flex-1">
+      <div className="flex flex-col gap-1">
         <h3 className="text-lg">{props.data.title}</h3>
         <h5 className="text-l text-neutral-500 ">{props.data.domain}</h5>
       </div>
@@ -38,10 +45,9 @@ export function TaskCard(props: TaskCardProps): JSX.Element {
 
         <Avatar.Group>
           {props.data.participants.map((item) => (
-            <Avatar
-              size="small"
-              
-            >{item}</Avatar>
+            <Avatar key={item} size="small">
+              {item}
+            </Avatar>
           ))}
         </Avatar.Group>
       </div>
