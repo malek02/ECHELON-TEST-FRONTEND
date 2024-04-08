@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { TaskModel } from "../../../core/models/tasks/task-model";
 import { createStudent } from "../../../core/services/task.service";
-import { StudentModel } from "../../../core/models/student/create-student";
+import { mapToApi, StudentModel } from "../../../core/models/student/create-student";
 
 export type QueryKeyT = [string, object | undefined];
 
@@ -44,7 +44,7 @@ export const useGetTaskById = (
 };
 
 export const useCreateStudent = () => {
-  return useMutation((params: StudentModel) => createStudent(params), {
+  return useMutation((params: StudentModel) => createStudent(mapToApi(params)), {
     onError: () => {
       notification.error({
         message: "Create Student  Error",

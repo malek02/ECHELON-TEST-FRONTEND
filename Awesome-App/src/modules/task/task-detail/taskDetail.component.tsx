@@ -19,7 +19,7 @@ export function TaskDetail(): JSX.Element {
 
   const { data } = useGetTaskById(() => {
     return getTaskById(taskId as string);
-  }, [taskId, ["task"]]);
+  }, [taskId||"", ["task"]]);
 
   const createStudent = useCreateStudent();
 
@@ -45,7 +45,7 @@ export function TaskDetail(): JSX.Element {
         />
         <div className="p-4 flex flex-col gap-5">
           <div className="flex flex-col gap-2">
-            <span className="text-3xl">title developer</span>
+            <span className="text-3xl">{data?.title}</span>
             <span className="text-slate-400 text-sm">
               UI UX Design . Apps Design
             </span>
