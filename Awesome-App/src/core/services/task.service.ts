@@ -16,11 +16,11 @@ export async function getTaskById(id: string): Promise<TaskModel> {
 export async function createStudent(value: StudentApi): Promise<void> {
   {
     const formData = new FormData();
-    formData.append("file", value.file);
+    formData.append("file", value.photo);
 
     await axios.post(
       "/api/create_student",
-      { ...value, file: formData },
+      { ...value },
       {
         headers: {
           "Content-Type": "multipart/form-data",

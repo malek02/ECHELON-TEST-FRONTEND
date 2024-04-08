@@ -19,7 +19,7 @@ export function TaskDetail(): JSX.Element {
 
   const { data } = useGetTaskById(() => {
     return getTaskById(taskId as string);
-  }, [taskId||"", ["task"]]);
+  }, [taskId || "", ["task"]]);
 
   const createStudent = useCreateStudent();
 
